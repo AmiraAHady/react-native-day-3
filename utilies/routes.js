@@ -7,7 +7,8 @@ const routes = Object.freeze({
   callScreen:'CallScreen',
   status:'Status',
   tab:'Tab',
-  drawer:'drawer'
+  drawer:'drawer',
+  cam:'Camera'
 });
 
 // routes.users='userPage'

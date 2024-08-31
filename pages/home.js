@@ -9,9 +9,9 @@ export default function Home({ navigation }) {
     <View>
       <Text>Home</Text>
       <Button
-        title="landing page"
+        title="users page"
         onPress={() => {
-          navigate(routes.tab);
+          navigate(routes.users);
         }}
       ></Button>
       {/* <Button

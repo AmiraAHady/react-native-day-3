@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 export default function StackNavigation() {
   return (
     <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
         name={routes.home}
         component={Home}
         options={{
@@ -27,17 +27,17 @@ export default function StackNavigation() {
           //   fontSize:
           // }
         }}
-      ></Stack.Screen> */}
+      ></Stack.Screen>
       {/* <Stack.Screen
         name={routes.tab}
         component={TopNavigation}
         // options={{ headerShown: false }}
       ></Stack.Screen> */}
-      <Stack.Screen
+      {/* <Stack.Screen
         name={routes.drawer}
         component={DrawerNavigation}
         // options={{ headerShown: false }}
-      ></Stack.Screen>
+      ></Stack.Screen> */}
 
       <Stack.Screen name={routes.users} component={Users}></Stack.Screen>
       <Stack.Screen name={routes.details} component={Details}></Stack.Screen>

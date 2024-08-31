@@ -1,20 +1,29 @@
-import { View, Text, FlatList, StyleSheet } from "react-native";
-import React, { useEffect, useState } from "react";
+import { View, Text, FlatList, StyleSheet, Button } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useNavigation } from "@react-navigation/native";
 import routes from "../utilies/routes";
+import axios from "axios";
+import useAxios from "axios-hooks";
+import { UserContext } from "../contexts/usersContextProvider";
 export default function Users() {
-  const [UsersData, setUsersData] = useState([]);
-  const { navigate } = useNavigation();
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((data) => {
-        return data.json();
-      })
-      .then((userList) => {
-        setUsersData(userList);
-      });
-  }, []);
+
+  const {dispatch,UsersData, loading, error } = useContext(UserContext);
+     const {navigate}=useNavigation()
+  if (loading) {
+    return (
+      <View>
+        <Text>loading....</Text>
+      </View>
+    );
+  }
+  if (error) {
+    return (
+      <View>
+        <Text>Error Getting data</Text>
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
       <FlatList
@@ -30,13 +39,24 @@ export default function Users() {
                 size={26}
                 color="orange"
                 onPress={() => {
-                  navigate(routes.details,{id:item.id,name:item.username});
+                  navigate(routes.details, {
+                    id: item.id,
+                    name: item.username,
+                  });
                 }}
               />
             </Text>
           </View>
         )}
       ></FlatList>
+      {/* <Button title="Add User" onPress={()=>{
+         dispatch({type:'ADDUSER',payload:{id:30,username:'Ahmed',email:'ahmed@gmail.com'}})
+        //  setUsersData((oldUsers)=>[...oldUsers,{id:30,username:'Ahmed',email:'ahmed@gmail.com'}])
+      }}></Button> */}
+      <Button title="Clear Users" onPress={()=>{
+         dispatch({type:'CLEAR'})
+        //  setUsersData((oldUsers)=>[...oldUsers,{id:30,username:'Ahmed',email:'ahmed@gmail.com'}])
+      }}></Button>
     </View>
   );
 }
